@@ -5,10 +5,12 @@ const app = express();
 const port = 3000;
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "/views"));
+app.set("views", path.join(__dirname, "views"));
 
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", {
+    title: "Home",
+  });
 });
 
 app.get("/r/:param", (req, res) => {
