@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Users</title>
+  </head>
+  <body>
+    <h1>"<%= param %>"</h1>
+
+    <% if (filteredUsers.length > 0) { %>
+    <ul>
+      <% filteredUsers.forEach(function(user) { %>
+      <li><strong>Name:</strong> <%= user.name %> <%= user.surname %><br /></li>
+      <% }); %>
+    </ul>
+    <% } else { %>
+    <p>No users</p>
+    <% } %>
+  </body>
+</html>

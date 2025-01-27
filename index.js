@@ -13,7 +13,16 @@ app.get("/", (req, res) => {
 
 app.get("/r/:param", (req, res) => {
   const { param } = req.params;
-  res.render("subpage", { param });
+  const data = JSON.parse(fs.readFileSync("data.json", "utf8"));
+  const filteredUsers = data.users.filter(
+    (u) =>
+      u.name.toLowerCase().includes(param.toLowerCase()) ||
+      u.surname.toLowerCase().includes(param.toLowerCase())
+  );
+  if (filteredUsers.length === 0) {
+    return res.render("notfound", { param });
+  }
+  res.render("users", { filteredUsers, param });
 });
 
 app.get("/users/:id", (req, res) => {
