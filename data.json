@@ -1,7 +1,7 @@
 {
   "users": [
-    { "id": 1, "name": "John" , "surname":"Doe", "email": "john@example.com" },
+    { "id": 1, "name": "John" , "surname":"Travis", "email": "john@example.com" },
     { "id": 2, "name": "John" , "surname":"Lennon", "email": "johnl@example.com" },
-    { "id": 2, "name": "Jane", "surname": "Smith", "email": "jane@example.com" }
+    { "id": 2, "name": "Jane", "surname": "Fonda", "email": "jane@example.com" }
   ]
 }

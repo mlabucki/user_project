@@ -1,3 +1,6 @@
-<h1>User Details</h1>
-<p>Name: <%= user.name %></p>
-<p>Surname: <%= user.surname %></p>
+<div class="text-center">
+  <h2>User Details: <%= user.name %> <%= user.surname %></h2>
+  <p><strong>Email:</strong> <%= user.email %></p>
+  <a href="/r/<%= user.name %>" class="btn btn-primary">Back to Search</a>
+  <a href="/" class="btn btn-primary">Back to Home</a>
+</div>

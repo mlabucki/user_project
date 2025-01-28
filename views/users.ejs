@@ -1,11 +1,62 @@
-<h1>"<%= param %>"</h1>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const input = document.querySelector("input[name='param']");
+    const tableBody = document.querySelector("#user-table-body");
 
-<% if (filteredUsers.length > 0) { %>
-<ul>
-  <% filteredUsers.forEach(function(user) { %>
-  <li><strong>Name:</strong> <%= user.name %> <%= user.surname %><br /></li>
-  <% }); %>
-</ul>
-<% } else { %>
-<p>No users</p>
-<% } %>
+    const allUsers = <%- JSON.stringify(filteredUsers) %>;
+
+    function renderTable(users) {
+      tableBody.innerHTML = users.map(user => `
+        <tr>
+          <td>${user.name}</td>
+          <td>${user.surname}</td>
+          <td>${user.email}</td>
+          <td><a href="/users/${user.id}" class="btn btn-info">View Details</a></td>
+        </tr>
+      `).join("");
+    }
+
+    input.addEventListener("input", () => {
+      const query = input.value.toLowerCase();
+      const filtered = allUsers.filter(user =>
+        user.name.toLowerCase().includes(query) ||
+        user.surname.toLowerCase().includes(query)
+      );
+      renderTable(filtered);
+    });
+
+    renderTable(allUsers);
+  });
+</script>
+
+<div class="container mt-5 text-center">
+  <h2>Welcome to the Users Page</h2>
+  <p>Please see all users below...</p>
+
+  <div class="mb-4">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        name="param"
+        placeholder="Filter by name or surname"
+        value="<%= param %>"
+      />
+    </div>
+  </div>
+
+  <% if (filteredUsers && filteredUsers.length > 0) { %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody id="user-table-body"></tbody>
+  </table>
+  <% } else { %>
+  <p class="text-danger">No users "<%= param %>".</p>
+  <% } %>
+</div>
