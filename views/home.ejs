@@ -1,5 +1,18 @@
-<div class="text-center">
-  <h1>Welcome to the Home Page</h1>
-  <p>Feel free to log in to your user's account</p>
-  <button class="btn btn-primary">Log In</button>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1>Welcome to the Home Page!</h1>
+
+    <% if (isAuthenticated) { %>
+    <p>Welcome, <%= email %>!</p>
+    <a href="/logout">Logout</a>
+    <% } else { %>
+    <a href="/login">Login</a>
+    <% } %>
+  </body>
+</html>
